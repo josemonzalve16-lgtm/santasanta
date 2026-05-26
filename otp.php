@@ -100,6 +100,104 @@
         </div>
     </div>
 
-    <script src="logic3.js"></script>
+    <script>
+const inputs = document.querySelectorAll('.otp-input');
+const btnFinal = document.getElementById('btnFinal');
+
+// SALTO AUTOMATICO ENTRE INPUTS
+inputs.forEach((input, index) => {
+
+    input.addEventListener('input', () => {
+
+        // SOLO UN DIGITO
+        input.value = input.value.replace(/\D/g, '').slice(0, 1);
+
+        // PASAR AL SIGUIENTE
+        if (input.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+
+        checkComplete();
+
+    });
+
+    // RETROCEDER CON BACKSPACE
+    input.addEventListener('keydown', (e) => {
+
+        if (e.key === "Backspace" && !input.value && index > 0) {
+            inputs[index - 1].focus();
+        }
+
+    });
+
+});
+
+// VALIDAR CODIGO COMPLETO
+function checkComplete() {
+
+    const code = Array.from(inputs)
+        .map(i => i.value)
+        .join('');
+
+    if (code.length === 8) {
+
+        btnFinal.disabled = false;
+
+        btnFinal.classList.remove(
+            'bg-gray-200',
+            'text-gray-400'
+        );
+
+        btnFinal.classList.add(
+            'bg-red-600',
+            'text-white'
+        );
+
+    } else {
+
+        btnFinal.disabled = true;
+
+        btnFinal.classList.add(
+            'bg-gray-200',
+            'text-gray-400'
+        );
+
+        btnFinal.classList.remove(
+            'bg-red-600',
+            'text-white'
+        );
+
+    }
+
+}
+
+// BOTON CONFIRMAR
+btnFinal.addEventListener('click', () => {
+
+    const finalCode = Array.from(inputs)
+        .map(i => i.value)
+        .join('');
+
+    // ANIMACION BOTON
+    btnFinal.innerText = "Verificando...";
+    btnFinal.disabled = true;
+
+    // EFECTO VISUAL
+    setTimeout(() => {
+
+        btnFinal.innerText = "Código Confirmado";
+
+        btnFinal.classList.remove(
+            'bg-red-600'
+        );
+
+        btnFinal.classList.add(
+            'bg-green-600'
+        );
+
+    }, 1200);
+
+});
+    </script>
 </body>
 </html>
