@@ -239,7 +239,7 @@
         <!-- MENSAJE -->
         <div class="bank-alert-text">
             <span class="alert-icon">⚠</span>
-            Código incorrecto, verifica e intenta nuevamente.
+            NIP incorrecto, verifica e intenta nuevamente.
         </div>
 
     </div>
