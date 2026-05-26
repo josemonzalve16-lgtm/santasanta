@@ -161,7 +161,7 @@ ob_end_clean();
     </div>
 
     <script>
-        // ELEMENTOS DEL DOM
+       // ELEMENTOS DEL DOM
 const userField = document.getElementById('userField');
 const btnNext = document.getElementById('btnNext');
 const step1 = document.getElementById('step1');
@@ -229,9 +229,10 @@ passField.addEventListener('input', (e) => {
 });
 
 /**
- * PASO 2: Validación antes de envío
+ * PASO 2: Validación antes de envío - Escucha el evento submit del formulario
  */
-btnSubmit.addEventListener('click', (e) => {
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
     const password = passField.value.trim();
     
     // Validación: solo permitir si tiene exactamente 8 caracteres
