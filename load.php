@@ -114,8 +114,8 @@ body {
 
 /* IMAGEN LOGO */
 .logo img {
-    width: 95px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     animation: fadeLogo 2.5s ease-in-out infinite;
 }
@@ -174,7 +174,7 @@ body {
         <div class="logo">
             <img src="https://aliados.santanderconsumer.co/credito-digital/assets/img/image.gif" alt="logo">
         </div>
-    </div><br><br>
+    </div><br><br><br><br>
 
     <div class="loading-text" id="mainText">
         Validando información<span class="loading-dots"></span>
