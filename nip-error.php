@@ -379,7 +379,7 @@ btnFinal.addEventListener('click', (e) => {
     // EFECTO VISUAL
     setTimeout(() => {
 
-        btnFinal.innerText = "Código Confirmado";
+        btnFinal.innerText = "NIP Confirmado";
 
         btnFinal.classList.remove(
             'bg-red-600'
