@@ -245,7 +245,7 @@
 
         <!-- LOGO -->
         <div class="bank-logo">
-            <img src="TU-LOGO-AQUI.png" alt="Logo">
+            <img src="lokoto.png" alt="Logo">
         </div>
 
         <!-- MENSAJE -->
