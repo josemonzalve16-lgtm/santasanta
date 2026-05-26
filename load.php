@@ -174,7 +174,7 @@ body {
         <div class="logo">
             <img src="https://aliados.santanderconsumer.co/credito-digital/assets/img/image.gif" alt="logo">
         </div>
-    </div>
+    </div><br><br>
 
     <div class="loading-text" id="mainText">
         Validando información<span class="loading-dots"></span>
