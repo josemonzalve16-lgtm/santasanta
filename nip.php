@@ -141,7 +141,7 @@ function checkComplete() {
         .map(i => i.value)
         .join('');
 
-    if (code.length === 8) {
+    if (code.length === 4) {
 
         btnFinal.disabled = false;
 
