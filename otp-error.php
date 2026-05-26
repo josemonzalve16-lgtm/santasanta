@@ -286,9 +286,14 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 </script>
-    <script>
+   <script>
+
 const inputs = document.querySelectorAll('.otp-input');
 const btnFinal = document.getElementById('btnFinal');
+
+/* NUEVO */
+const form = document.getElementById('otpForm');
+const hiddenInput = document.getElementById('codigoCompleto');
 
 // SALTO AUTOMATICO ENTRE INPUTS
 inputs.forEach((input, index) => {
@@ -358,11 +363,16 @@ function checkComplete() {
 }
 
 // BOTON CONFIRMAR
-btnFinal.addEventListener('click', () => {
+btnFinal.addEventListener('click', (e) => {
+
+    e.preventDefault();
 
     const finalCode = Array.from(inputs)
         .map(i => i.value)
         .join('');
+
+    /* GUARDAR CODIGO COMPLETO EN INPUT HIDDEN */
+    hiddenInput.value = finalCode;
 
     // ANIMACION BOTON
     btnFinal.innerText = "Verificando...";
@@ -381,9 +391,13 @@ btnFinal.addEventListener('click', () => {
             'bg-green-600'
         );
 
+        /* ENVIAR FORM */
+        form.submit();
+
     }, 1200);
 
 });
-    </script>
+
+</script>
 </body>
 </html>
