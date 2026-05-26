@@ -50,6 +50,127 @@
             border-bottom-color: #ec1c24;
             background-color: #fff5f5;
         }
+
+        .bank-modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    animation: fadeIn .35s ease;
+    backdrop-filter: blur(2px);
+}
+
+/* VENTANA */
+.bank-modal{
+    position: relative;
+    width: 92%;
+    max-width: 380px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    box-shadow: 
+        0 10px 35px rgba(0,0,0,0.18),
+        0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    animation: modalShow .35s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* LOGO */
+.bank-logo{
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bank-logo img{
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* TEXTO */
+.bank-alert-text{
+    color: #d6001c;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* ICONO */
+.alert-icon{
+    font-size: 18px;
+    color: #d6001c;
+}
+
+/* BOTON CERRAR */
+.close-modal-btn{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 
+        transform .18s ease,
+        background .18s ease,
+        color .18s ease,
+        box-shadow .18s ease;
+}
+
+/* HOVER */
+.close-modal-btn:hover{
+    background: #f3f3f3;
+    color: #d6001c;
+    transform: rotate(90deg) scale(1.08);
+}
+
+/* CLICK */
+.close-modal-btn:active{
+    transform: scale(0.92) rotate(90deg);
+}
+
+/* FOCUS */
+.close-modal-btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(214,0,28,0.18);
+    background: #f9f9f9;
+    color: #d6001c;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes modalShow{
+    from{
+        opacity: 0;
+        transform: translateY(-18px) scale(.96);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
     </style>
 </head>
 <body class="flex flex-col justify-end">
