@@ -88,10 +88,13 @@
 /* LOGO */
 .bank-logo{
     margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bank-logo img{
-    width: 80px;
+    width: 35px;
     height: auto;
     object-fit: contain;
 }
