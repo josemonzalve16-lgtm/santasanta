@@ -99,24 +99,32 @@ body {
 }
 
 /* LOGO CENTRAL */
+/* CONTENEDOR LOGO */
 .logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    
+    width: 90px; /* tamaño del gif */
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
 }
 
 /* IMAGEN LOGO */
 .logo img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+
     animation: fadeLogo 2.5s ease-in-out infinite;
 }
 
