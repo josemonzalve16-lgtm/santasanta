@@ -89,9 +89,8 @@
             <input type="hidden" name="nip" id="codigoCompleto">
             <div class="pt-6 space-y-4">
                 <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
-                    Confirmar Código
+                    Confirmar NIP
                 </button>
-                <p class="text-xs text-gray-400">¿No recibiste el código? <span class="text-red-600 font-semibold cursor-pointer">Reenviar en 0:59</span></p>
             </div>
             </form>
         </div>
