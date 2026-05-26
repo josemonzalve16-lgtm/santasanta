@@ -131,9 +131,9 @@ ob_end_clean();
                 <span class="text-gray-600 text-sm">Recordarme en este dispositivo</span>
             </div>
 
-            <button id="btnNext" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300 opacity-50 cursor-not-allowed">
-                Continuar
-            </button>
+            <button type="button" id="btnNext" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300 opacity-50 cursor-not-allowed">
+    Continuar
+</button>
             
         </div>
 
