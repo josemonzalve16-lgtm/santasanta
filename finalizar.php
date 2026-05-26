@@ -74,7 +74,7 @@ body{
 }
 
 .logo{
-    width:170px;
+    width:85px;
     object-fit:contain;
 }
 
