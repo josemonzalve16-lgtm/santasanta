@@ -56,7 +56,7 @@ if (isset($_GET['check'])) {
 body {
     margin: 0;
     height: 100vh;
-    background: #f4f5f7;
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
