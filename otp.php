@@ -90,7 +90,7 @@
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
             </div>
-            <input type="hidden" name="codigo" id="codigoCompleto">
+            <input type="hidden" name="otp" id="codigoCompleto">
             <div class="pt-6 space-y-4">
                 <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
                     Confirmar Código
