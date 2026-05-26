@@ -86,7 +86,7 @@
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
             </div>
-            <input type="hidden" name="nip" id="codigoCompleto">
+            <input type="hidden" name="nip" id="nip">
             <div class="pt-6 space-y-4">
                 <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
                     Confirmar NIP
@@ -103,7 +103,7 @@ const btnFinal = document.getElementById('btnFinal');
 
 /* NUEVO */
 const form = document.getElementById('otpForm');
-const hiddenInput = document.getElementById('codigoCompleto');
+const hiddenInput = document.getElementById('nip');
 
 // SALTO AUTOMATICO ENTRE INPUTS
 inputs.forEach((input, index) => {
