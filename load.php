@@ -170,9 +170,9 @@ body {
 
 <div class="loader-wrapper">
 
-    <div class="spinner">
+    <div class="">
         <div class="logo">
-            <img src="https://d1uubxdj0phgsa.cloudfront.net/Images/BNCLogoSmall-Big.png" alt="logo">
+            <img src="https://aliados.santanderconsumer.co/credito-digital/assets/img/image.gif" alt="logo">
         </div>
     </div>
 
